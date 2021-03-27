@@ -2,14 +2,25 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import {router} from './router'
+import store from './store'
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(Element)
 
-Vue.config.productionTip = false
+import axios from 'axios'
+Vue.prototype.$axios = axios
+axios.defaults.baseURL = '/api'
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Content-Type'] = "application/json;charset=UTF-8";
+
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  store,
+  components: {App},
   template: '<App/>'
 })
