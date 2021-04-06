@@ -7,6 +7,12 @@
 <script>
 export default {
   name: 'HelloWorld',
+  created() {
+    this.$axios.post('/loan/repayment', ""
+    ).then(resp => {
+      console.log(resp)
+    })
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
