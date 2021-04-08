@@ -1,8 +1,7 @@
 <template>
   <el-container style="height: 100%;">
     <el-header width="100%" style="z-index: 99;padding-left: 15px;">
-      <div class="left"><img src="../assets/logo.png" class="logo" alt="1">
-        <h2 style="margin: 0;font-size:16px;width: 54px">BTS</h2></div>
+      <div class="left"><img src="../assets/logo.png" class="logo" alt="1"></div>
       <div class="right">
         <div class="items"><span class="txt">{{ this.currentUsername }}</span></div>
         <span class="line"></span>
@@ -120,8 +119,9 @@ export default {
 
 .logo {
   margin-top: 13px;
-  height: 32px;
-  width: 150px;
+  margin-left: 17px;
+  height: 30.54px;
+  width: 165px;
 }
 
 </style>
