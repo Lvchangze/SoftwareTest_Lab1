@@ -1,6 +1,11 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from "../components/HelloWorld"
+import Vue from 'vue';
+import Router from 'vue-router';
+import Login from "../components/Login";
+import Main from '../components/Main';
+import ClerkPayBack from "../components/ClerkPayBack";
+import AutoPayBack from '../components/AutoPayBack';
+import TransactionInfo from "../components/TransactionInfo";
+import FinancialProduct from "../components/FinancialProduct";
 
 Vue.use(Router)
 
@@ -9,30 +14,40 @@ export const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'login',
+      component: Login
     },
-    // {
-    //   path: '/Login',
-    //   name: 'login',
-    //   component: Login
-    // },
-    // {
-    //   path: '/register',
-    //   name: 'Register',
-    //   component: Register,
-    // },
-    // {
-    //   path: '/Main',
-    //   name: 'Main',
-    //   component: Main,
-      // children: [
-      //   {
-      //     path: '/Search',
-      //     name: 'Search',
-      //     component: Search,
-      //   },
-      // ]
-    // },
+    {
+      path: '/Login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/Main',
+      name: 'Main',
+      component: Main,
+      children: [
+        {
+          path: '/ClerkPayBack',
+          name: 'ClerkPayBack',
+          component: ClerkPayBack,
+        },
+        {
+          path: '/AutoPayBack',
+          name: 'AutoPayBack',
+          component: AutoPayBack,
+        },
+        {
+          path: '/TransactionInfo',
+          name: 'TransactionInfo',
+          component: TransactionInfo,
+        },
+        {
+          path: '/FinancialProduct',
+          name: 'FinancialProduct',
+          component: FinancialProduct,
+        }
+      ]
+    },
   ]
 })
