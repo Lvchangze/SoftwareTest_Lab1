@@ -20,6 +20,12 @@ export default {
   /*margin-top: 60px;*/
 }
 
+.el-table th.gutter{
+
+  display: table-cell!important;
+
+}
+
 body {
   margin: 0;
   padding: 0;
