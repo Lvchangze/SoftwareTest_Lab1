@@ -53,7 +53,8 @@ export default {
         .then(() => {
           this.$router.replace('/login');
         })
-        .catch(() => {});
+        .catch(() => {
+        });
     },
   }
 }

@@ -32,8 +32,17 @@
 <script>
 export default {
   name: "BillPage",
+  created() {
+    this.$axios.post('/getBills', {
+      accountNum: this.accountNum
+    })
+      .then(resp => {
+        this.billList = resp.data.billList;
+      })
+  },
   data() {
     return {
+      accountNum: this.$store.state.currentAccountNum,
       billList: [
         {
           planNum: 2,

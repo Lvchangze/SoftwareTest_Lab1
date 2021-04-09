@@ -28,7 +28,7 @@
 export default {
   name: "AccountPage",
   created() {
-    this.$axios.post('/getAllBills', {
+    this.$axios.post('/getAccounts', {
       idnumber: this.idnumber
     })
       .then(resp => {

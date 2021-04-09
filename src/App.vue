@@ -20,9 +20,9 @@ export default {
   /*margin-top: 60px;*/
 }
 
-.el-table th.gutter{
+.el-table th.gutter {
 
-  display: table-cell!important;
+  display: table-cell !important;
 
 }
 

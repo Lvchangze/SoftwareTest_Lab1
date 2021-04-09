@@ -95,7 +95,7 @@ export default {
     }
   },
   methods: {
-    search(){
+    search() {
       console.log("")
     },
   }
