@@ -28,6 +28,7 @@
           <div style="min-width: 70px;padding-right: 5px;">结束日期</div>
           <el-input v-model="input" placeholder="搜索交易账号" size="mini"></el-input>
         </el-col>
+        <el-button>搜索</el-button>
       </el-row>
 
     <el-table class="table_head table_border" :data="transactionList" size="small" border stripe="true" style="border-bottom: 0;padding:0">
