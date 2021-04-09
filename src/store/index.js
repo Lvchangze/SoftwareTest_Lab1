@@ -5,16 +5,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentUsername: localStorage.getItem('currentUsername') || null,//存当前用户的userName
+    currentIdnumber:localStorage.getItem('currentIdnumber')||null,//存当前客户的idnumber
+    currentAccountNum:localStorage.getItem('currentAccountNum')||null,
   },
   mutations: {
-    setCurrentUsername(state, data) {
-      localStorage.setItem('currentUsername', data.username);
-      state.currentUsername = data.username;
+    setCurrentIdnumber(state, data) {
+      localStorage.setItem('currentIdnumber', data);
+      state.currentIdnumber = data;
     },
-    logout(state) {
-      localStorage.removeItem('currentUsername');
-      state.currentUsername = null;
+    setCurrentAccountNum(state, data) {
+      localStorage.setItem('currentAccountNum', data);
+      state.currentAccountNum = data;
     },
   },
   actions: {}

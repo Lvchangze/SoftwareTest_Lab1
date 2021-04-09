@@ -66,7 +66,6 @@ export default {
       })
         .then(resp => {
           if (resp.status === 200) {
-            this.$store.commit('setCurrentUsername', this.loginForm.username);
             this.$router.replace({path: '/Main'})
           }
         })

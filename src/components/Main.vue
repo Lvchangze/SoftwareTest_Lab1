@@ -3,7 +3,6 @@
     <el-header width="100%" style="z-index: 99;padding-left: 15px;">
       <div class="left"><img src="../assets/logo.png" class="logo" alt="1"></div>
       <div class="right">
-        <div class="items"><span class="txt">{{ this.currentUsername }}</span></div>
         <span class="line"></span>
         <div class="login"><span class="txt" v-on:click="quit">退出登录</span></div>
       </div>
@@ -39,9 +38,6 @@
 export default {
   name: "Main",
   data() {
-    return {
-      currentUsername: this.$store.state.currentUsername,
-    }
   },
   methods: {
     //退出登录功能
@@ -53,11 +49,11 @@ export default {
         center: 'true',
         confirmButtonClass: 'messageButton',
         cancelButtonClass: 'messageButton'
-      }).then(() => {
-        this.$store.commit('logout');
-        this.$router.replace('/login');
-      }).catch(() => {
-      });
+      })
+        .then(() => {
+          this.$router.replace('/login');
+        })
+        .catch(() => {});
     },
   }
 }

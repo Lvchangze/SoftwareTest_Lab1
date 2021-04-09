@@ -33,7 +33,7 @@
         <el-button type="primary" v-on:click="search">搜索</el-button>
       </el-row>
 
-      <el-table class="table_head table_border" :data="transactionList" size="small" border stripe="true"
+      <el-table class="table_head table_border" :data="transactionList" size="small" border
                 style="border-bottom: 0;padding:0">
         <el-table-column type="selection" align="center"></el-table-column>
         <el-table-column prop="transactionNum" label="流水号" column-key="transactionNum" align="center"
@@ -57,6 +57,7 @@ export default {
   created() {
     this.$axios.post('/getTransactionInfo', "")
       .then(resp => {
+        console.log(resp)
         this.transactionList = resp.data.transactionList
       })
       .catch(error => {
@@ -79,6 +80,7 @@ export default {
           amount: 5000,
           account: "lcz01202104074",
           operatorTime: "2021-04-07 14:32:19",
+          transactionCode: "5220",
         },
         {
           transactionNum: "yyh0151020202104071432191",
@@ -87,15 +89,15 @@ export default {
           amount: 4000,
           account: "lcz01202104075",
           operatorTime: "2021-04-07 14:22:20",
+          transactionCode: "0220",
         }
       ]
     }
   },
   methods: {
     search(){
-
+      console.log("")
     },
-
   }
 }
 </script>
