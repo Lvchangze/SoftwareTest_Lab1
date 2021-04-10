@@ -6,16 +6,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     currentIdnumber: localStorage.getItem('currentIdnumber') || null,//存当前客户的idnumber
-    currentAccountNum: localStorage.getItem('currentAccountNum') || null,
+    currentIouNum: localStorage.getItem('currentIouNum') || null,
   },
   mutations: {
     setCurrentIdnumber(state, data) {
       localStorage.setItem('currentIdnumber', data);
       state.currentIdnumber = data;
     },
-    setCurrentAccountNum(state, data) {
-      localStorage.setItem('currentAccountNum', data);
-      state.currentAccountNum = data;
+    setCurrentIouNum(state, data) {
+      localStorage.setItem('currentIouNum', data);
+      state.currentIouNum = data;
     },
   },
   actions: {}

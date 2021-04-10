@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     verify() {
-      this.$router.push('/AccountPage')
+      this.$router.push('/LoanPage')
 
       // this.$axios.post('/verifyCustomer', {
       //   idnumber: this.idnumber
@@ -31,7 +31,7 @@ export default {
       //   .then(resp => {
       //     if (resp.status === 200) {//客户验证成功
       //       this.$store.commit('setCurrentIdnumber', this.idnumber)
-      //       this.$router.push('/AccountPage')
+      //       this.$router.push('/LoanPage')
       //     } else if (resp.status === 404) {//客户不存在
       //       this.$message.error("客户不存在")
       //     }
