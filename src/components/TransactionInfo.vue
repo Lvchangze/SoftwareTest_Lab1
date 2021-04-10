@@ -12,7 +12,7 @@
         </el-col>
         <el-col :span="6" class="searchPart">
           <div style="min-width: 70px;padding-right: 5px;">办理机构</div>
-          <el-input v-model="organization" placeholder="搜索办理结构" size="mini"></el-input>
+          <el-input v-model="organization" placeholder="搜索办理机构" size="mini"></el-input>
         </el-col>
         <el-col :span="6" class="searchPart">
           <div style="min-width: 70px;padding-right: 5px;">交易代码</div>
@@ -23,14 +23,14 @@
         <el-col :span="6" class="searchPart" style="padding-left: 0">
           <div style="min-width: 70px;padding-right: 5px;">开始日期</div>
           <el-date-picker v-model="startDate" type="date" placeholder="选择开始日期" size="mini"
-                          style="width: 250px"></el-date-picker>
+                          style="width: 250px" value-format="yyyy-MM-dd"></el-date-picker>
         </el-col>
         <el-col :span="6" class="searchPart">
           <div style="min-width: 70px;padding-right: 5px;">结束日期</div>
           <el-date-picker v-model="endDate" type="date" placeholder="选择结束日期" size="mini"
-                          style="width: 250px"></el-date-picker>
+                          style="width: 250px" value-format="yyyy-MM-dd"></el-date-picker>
         </el-col>
-        <el-button type="primary" v-on:click="search">搜索</el-button>
+        <el-button type="primary" v-on:click="search" size="mini" style="margin-left:15px;float: left">搜索</el-button>
       </el-row>
 
       <el-table class="table_head table_border" :data="resultList" size="small" border
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     search() {
-      var list=[];
+      let list=[];
       for (let i = 0; i < this.transactionList.length; i++) {
         list.push(this.transactionList[i]);
       }
@@ -125,6 +125,19 @@ export default {
           continue;
         }
         if (this.account !== '' && list[i].account !== this.account) {
+          delete(list[i]);
+          continue;
+        }
+        if (this.transactionCode !== '' && list[i].transactionCode !== this.transactionCode) {
+          delete(list[i]);
+          continue;
+        }
+        let date = list[i].operatorTime.split(' ')[0];
+        if (this.startDate !== '' && date < this.startDate) {
+          delete(list[i]);
+          continue;
+        }
+        if (this.endDate !== '' && date > this.endDate) {
           delete(list[i]);
         }
       }
