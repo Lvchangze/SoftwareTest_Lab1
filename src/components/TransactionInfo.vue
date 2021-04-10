@@ -115,14 +115,21 @@ export default {
   },
   methods: {
     search() {
-      let list = [];
+      var list=[];
       for (let i = 0; i < this.transactionList.length; i++) {
-        console.log(this.transactionList[i].transactionNum);
-        if (this.transactionList[i].transactionNum === this.transactionNum) {
-          list.push(this.transactionList[i]);
+        list.push(this.transactionList[i]);
+      }
+      for (let i = 0; i < this.transactionList.length; i++) {
+        if (this.transactionNum !== '' && list[i].transactionNum !== this.transactionNum) {
+          delete(list[i]);
+          continue;
+        }
+        if (this.account !== '' && list[i].account !== this.account) {
+          delete(list[i]);
         }
       }
       this.resultList = list;
+
     },
   }
 }
