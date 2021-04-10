@@ -8,16 +8,19 @@
             第{{ scope.row.planNum }}期
           </template>
         </el-table-column>
-        <el-table-column prop="remainPrincipal" label="待还本金" column-key="remainPrincipal" align="center"></el-table-column>
-        <el-table-column prop="remainInterest" label="待还利息" column-key="remainInterest" align="center"></el-table-column>
+        <el-table-column prop="remainPrincipal" label="待还本金" column-key="remainPrincipal"
+                         align="center"></el-table-column>
+        <el-table-column prop="remainInterest" label="待还利息" column-key="remainInterest"
+                         align="center"></el-table-column>
         <el-table-column prop="remainAmount" label="待还总额" column-key="remainAmount" align="center"></el-table-column>
         <el-table-column prop="fine" label="罚金" column-key="fine" align="center"></el-table-column>
-        <el-table-column prop="repaymentStatus" label="状态" column-key="repaymentStatus" align="center"></el-table-column>
+        <el-table-column prop="repaymentStatus" label="状态" column-key="repaymentStatus"
+                         align="center"></el-table-column>
         <el-table-column prop="planDate" label="还款时间" column-key="planDate" sortable align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button type="primary" v-if="scope.row.repaymentStatus !== '已还'"
-                       v-on:click="clickButton(scope.row.planNum, scope.row.repaymentStatus, scope.row.remainAmount)"
+                       v-on:click="clickButton(scope.row)"
             >
               还款
             </el-button>
@@ -58,7 +61,8 @@ export default {
   },
   data() {
     return {
-      idnumber:this.$store.state.currentIdnumber,
+      customerCode: this.$store.state.currentCustomerCode,
+      accountNum: this.$store.state.currentAccountNum,
       iouNum: this.$store.state.currentIouNum,
       dialogVisible: false,
       billList: [
@@ -100,14 +104,15 @@ export default {
           planDate: "2021-07-07"
         },
       ],
-      chosenPlanNum: '',
-      chosenRemainAmount: '',
+      chosenRow: {},
     }
   },
   methods: {
     updateTable() {
       this.$axios.post('/getBills', {
-        iouNum: this.iouNum
+        customerCode: localStorage.getItem('currentCustomerCode'),
+        accountNum: localStorage.getItem('currentAccountNum'),
+        iouNum: localStorage.getItem('currentIouNum'),
       })
         .then(resp => {
           this.billList = resp.data.billList;
@@ -123,19 +128,20 @@ export default {
         })
     },
 
-    clickButton(planNum, repaymentStatus, remainAmount) {
-      this.chosenPlanNum = planNum;
-      this.chosenRemainAmount = remainAmount;
-      if (repaymentStatus === '逾期') {
+    clickButton(row) {
+      this.chosenRow = row;
+      console.log(this.chosenRow)
+      if (this.chosenRow.repaymentStatus === '逾期') {
         this.$confirm('此操作将先缴纳逾期罚金, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {//点击了确定
           this.$axios.post('/payFine', {
-            idnumber: this.idnumber,
+            customerCode: this.customerCode,
+            accountNum: this.accountNum,
             iouNum: this.iouNum,
-            planNum: planNum
+            planNum: this.chosenRow.planNum
           })
             .then(resp => {
               if (resp.status === 200) {
@@ -156,15 +162,14 @@ export default {
     },
 
     payBill(payMethod) {
-      console.log(this.chosenPlanNum)
-      console.log(this.chosenRemainAmount)
       this.dialogVisible = false
       if (payMethod === 1) {
         this.$axios.post('/repayment', {
-          idnumber: this.idnumber,
+          customerCode: this.customerCode,
+          accountNum: this.accountNum,
           iouNum: this.iouNum,
-          planNum: this.chosenPlanNum,
-          value:this.chosenRemainAmount
+          planNum: this.chosenRow.planNum,
+          value: this.chosenRow.remainAmount
         })
           .then(resp => {
             if (resp.status === 200) {
@@ -182,14 +187,15 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
         }).then(({value}) => {
-          if (value > this.chosenRemainAmount) {
+          if (value > this.chosenRow.remainAmount) {
             this.$message.error("超出待还总额")
             return
           }
           this.$axios.post('/repayment', {
-            idnumber: this.idnumber,
+            customerCode: this.customerCode,
+            accountNum: this.accountNum,
             iouNum: this.iouNum,
-            planNum: this.chosenPlanNum,
+            planNum: this.chosenRow.planNum,
             value: value
           })
             .then(resp => {

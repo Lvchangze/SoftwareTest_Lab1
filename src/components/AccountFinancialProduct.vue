@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <div class="padd">
-      <el-table class="table_head table_border" :data="customerProductList" size="small" border
+      <el-table class="table_head table_border" :data="accountFinancialProductList" size="small" border
                 style="border-bottom: 0;padding:0">
         <el-table-column prop="type" label="类型" column-key="type" align="center"></el-table-column>
         <el-table-column prop="productName" label="产品名称" column-key="productName" align="center"></el-table-column>
@@ -19,24 +19,23 @@
 export default {
   name: "CustomerFinancialProduct",
   created() {
-    this.$prompt('请输入客户身份证号', '', {
+    this.$prompt('请输入账户号', {
       distinguishCancelAndClose: true,
       confirmButtonText: '确定',
       cancelButtonText: '取消',
-    })
-      .then(({value}) => {
-        this.$message.success('输入成功');
-        this.$store.commit('setCurrentIdnumber', value)
-        this.$axios.post('/getCustomerProduct', {
-          idnumber: localStorage.getItem('currentIdnumber')
-        })
-          .then(resp => {
-            this.customerProductList = resp.data.customerProductList
-          })
-          .catch(error => {
-            console.log(error)
-          })
+    }).then(({value}) => {
+      this.$message.success('输入成功');
+      this.$store.commit('setCurrentAccountNum', value)
+      this.$axios.post('/getAccountFinancialProductList', {
+        accountNum: localStorage.getItem('currentAccountNum')
       })
+        .then(resp => {
+          this.accountFinancialProductList = resp.data.accountFinancialProductList
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    })
       .catch(() => {
         this.$message.error('请填写客户身份证号')
         this.$router.push('/Main')
@@ -44,8 +43,7 @@ export default {
   },
   data() {
     return {
-      idnumber: this.$store.state.currentIdnumber,
-      customerProductList: [
+      accountFinancialProductList: [
         {
           type: '定期',
           productName: "安增益31天",

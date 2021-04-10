@@ -37,7 +37,9 @@
           <el-button type="primary" v-on:click="buyProduct">确 定</el-button>
         </div>
       </el-dialog>
+
     </div>
+
   </el-container>
 </template>
 
@@ -45,15 +47,15 @@
 export default {
   name: "FinancialProduct",
   created() {
-    this.$prompt('请输入客户身份证号', '', {
+    this.$prompt('请输入账户号', {
       distinguishCancelAndClose: true,
       confirmButtonText: '确定',
       cancelButtonText: '取消',
     }).then(({value}) => {
       this.$message.success('输入成功');
-      this.$store.commit('setCurrentIdnumber', value)
+      this.$store.commit('setCurrentAccountNum', value)
       this.$axios.post('/getCreditLevel', {
-        idnumber: localStorage.getItem('currentIdnumber')
+        accountNum: localStorage.getItem('currentAccountNum')
       })
         .then(resp => {
           this.creditLevel = resp.data.creditLevel //1,2,3
@@ -62,13 +64,21 @@ export default {
           console.log(error)
         })
     }).catch(() => {
-      this.$message.error('请填写客户身份证号')
+      this.$message.error('请填写帐户号')
       this.$router.push('/Main')
     });
+
+    this.$axios.post('/getProductList', "")
+      .then(resp => {
+        this.productList = resp.data.productList
+      })
+      .catch(error => {
+        console.log(error)
+      })
   },
   data() {
     return {
-      idnumber: this.$store.state.currentIdnumber,
+      accountNum: this.$store.state.currentAccountNum,
       creditLevel: 1,
       dialogVisible: false,
       purchaseForm: {
@@ -147,15 +157,16 @@ export default {
     buyProduct() {
       this.dialogVisible = false;
       this.$axios.post('/judgeFine', {
-        idnumber: this.idnumber
+        accountNum: this.accountNum
       })
         .then(resp => {
           if (resp.status === 200) {//不包含罚金或者罚金金额已缴纳
             this.$axios.post('/buyProduct', {
-              idnumber: this.idnumber,
+              accountNum: this.accountNum,
               productName: this.chosenRow.productName,
               date: this.purchaseForm.date,
               buyInNum: this.purchaseForm.buyInNum,
+              singlePrice: this.chosenRow.singlePrice,
             })
               .then(resp => {
                 if (resp.status === 200) {

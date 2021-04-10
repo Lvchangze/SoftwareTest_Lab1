@@ -23,15 +23,15 @@ export default {
   },
   methods: {
     verify() {
-      this.$router.push('/LoanPage')
+      this.$router.push('/AccountPage')
 
       // this.$axios.post('/verifyCustomer', {
       //   idnumber: this.idnumber
       // })
       //   .then(resp => {
       //     if (resp.status === 200) {//客户验证成功
-      //       this.$store.commit('setCurrentIdnumber', this.idnumber)
-      //       this.$router.push('/LoanPage')
+      //       this.$store.commit('setCurrentCustomerCode', resp.data.customerCode)
+      //       this.$router.push('/AccountPage')
       //     } else if (resp.status === 404) {//客户不存在
       //       this.$message.error("客户不存在")
       //     }

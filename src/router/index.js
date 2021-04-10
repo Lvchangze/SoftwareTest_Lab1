@@ -6,9 +6,10 @@ import ClerkPayBack from "../components/ClerkPayBack";
 import AutoPayBack from '../components/AutoPayBack';
 import TransactionInfo from "../components/TransactionInfo";
 import FinancialProduct from "../components/FinancialProduct";
+import AccountPage from "../components/AccountPage";
 import LoanPage from "../components/LoanPage";
 import BillPage from "../components/BillPage";
-import CustomerFinancialProduct from "../components/CustomerFinancialProduct";
+import AccountFinancialProduct from "../components/AccountFinancialProduct";
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ export const router = new Router({
           component: FinancialProduct,
         },
         {
+          path:'/AccountPage',
+          name:'AccountPage',
+          component: AccountPage,
+        },
+        {
           path: '/LoanPage',
           name: 'LoanPage',
           component: LoanPage,
@@ -61,9 +67,9 @@ export const router = new Router({
           component: BillPage,
         },
         {
-          path:'/CustomerFinancialProduct',
-          name:'CustomerFinancialProduct',
-          component:CustomerFinancialProduct
+          path:'/AccountFinancialProduct',
+          name:'AccountFinancialProduct',
+          component:AccountFinancialProduct
         }
       ]
     },
