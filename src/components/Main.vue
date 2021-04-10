@@ -25,7 +25,10 @@
             <em class="el-icon-document icon"></em><span>银行流水信息</span>
           </el-menu-item>
           <el-menu-item index="/FinancialProduct">
-            <em class="el-icon-search icon"></em><span>理财产品查询</span>
+            <em class="el-icon-circle-plus-outline"></em><span>理财产品购买</span>
+          </el-menu-item>
+          <el-menu-item index="/CustomerFinancialProduct">
+            <em class="el-icon-s-help"></em><span>客户理财产品</span>
           </el-menu-item>
         </el-menu>
       </div>

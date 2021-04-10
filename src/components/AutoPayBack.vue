@@ -11,15 +11,11 @@
 export default {
   name: "AutoPayBack",
   data() {
-    return {
-      currentUsername: this.$store.state.currentUsername
-    }
+    return {}
   },
   methods: {
     autoPayBack() {
-      this.$axios.post('/autoPayBack', {
-        username: this.currentUsername,
-      })
+      this.$axios.post('/autoPayBack', "")
         .then(resp => {
           if (resp.status === 200) {
             this.$message({
