@@ -67,42 +67,42 @@ export default {
       dialogVisible: false,
       billList: [
         //repaymentStatus: 1为未还，2为已还，3为逾期
-        {
-          planNum: 1,//第几期
-          remainPrincipal: 0,//剩余的本金
-          remainInterest: 0,//剩余的利息
-          remainAmount: 0,//剩余的本息总计
-          fine: 0,//罚金
-          repaymentStatus: 2,//2为已还
-          planDate: "2021-04-07"//还款时间
-        },
-        {
-          planNum: 2,
-          remainPrincipal: 9883.763,
-          remainInterest: 300.4669,
-          remainAmount: 10184.2299,
-          fine: 10,
-          repaymentStatus: 3,//
-          planDate: "2021-05-07"
-        },
-        {
-          planNum: 3,
-          remainPrincipal: 9883.763,
-          remainInterest: 300.4669,
-          remainAmount: 10184.2299,
-          fine: 0,
-          repaymentStatus: 1,
-          planDate: "2021-06-07"
-        },
-        {
-          planNum: 4,
-          remainPrincipal: 9883.763,
-          remainInterest: 300.4669,
-          remainAmount: 20184.2299,
-          fine: 0,
-          repaymentStatus: 1,
-          planDate: "2021-07-07"
-        },
+        // {
+        //   planNum: 1,//第几期
+        //   remainPrincipal: 0,//剩余的本金
+        //   remainInterest: 0,//剩余的利息
+        //   remainAmount: 0,//剩余的本息总计
+        //   fine: 0,//罚金
+        //   repaymentStatus: 2,//2为已还
+        //   planDate: "2021-04-07"//还款时间
+        // },
+        // {
+        //   planNum: 2,
+        //   remainPrincipal: 9883.763,
+        //   remainInterest: 300.4669,
+        //   remainAmount: 10184.2299,
+        //   fine: 10,
+        //   repaymentStatus: 3,//
+        //   planDate: "2021-05-07"
+        // },
+        // {
+        //   planNum: 3,
+        //   remainPrincipal: 9883.763,
+        //   remainInterest: 300.4669,
+        //   remainAmount: 10184.2299,
+        //   fine: 0,
+        //   repaymentStatus: 1,
+        //   planDate: "2021-06-07"
+        // },
+        // {
+        //   planNum: 4,
+        //   remainPrincipal: 9883.763,
+        //   remainInterest: 300.4669,
+        //   remainAmount: 20184.2299,
+        //   fine: 0,
+        //   repaymentStatus: 1,
+        //   planDate: "2021-07-07"
+        // },
       ],
       chosenRow: {},
     }
@@ -121,6 +121,9 @@ export default {
             if (this.billList[i].repaymentStatus === 1) {
               this.billList[i].repaymentStatus = '未还'
             } else if (this.billList[i].repaymentStatus === 2) {
+              this.billList[i].remainPrincipal = 0
+              this.billList[i].remainInterest = 0
+              this.billList[i].remainAmount = 0
               this.billList[i].repaymentStatus = '已还'
             } else if (this.billList[i].repaymentStatus === 3) {
               this.billList[i].repaymentStatus = '逾期'

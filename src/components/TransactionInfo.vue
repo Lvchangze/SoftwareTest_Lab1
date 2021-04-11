@@ -74,71 +74,73 @@ export default {
       startDate: '',
       endDate: '',
       transactionList: [
-        {
-          transactionNum: "lcz0151020202104071432191",
-          branchName: "吕昌泽的机构",
-          transactionType: "银行卡存入",
-          amount: 5000,
-          account: "lcz01202104074",
-          operatorTime: "2021-04-07 14:32:19",
-          transactionCode: "5220",
-        },
-        {
-          transactionNum: "yyh0151020202104071432191",
-          branchName: "吕昌泽的机构",
-          transactionType: "柜员现金调拨",
-          amount: 4000,
-          account: "lcz01202104075",
-          operatorTime: "2021-04-07 14:22:20",
-          transactionCode: "0220",
-        }
+        // {
+        //   transactionNum: "lcz0151020202104071432191",
+        //   branchName: "吕昌泽的机构",
+        //   transactionType: "银行卡存入",
+        //   amount: 5000,
+        //   account: "lcz01202104074",
+        //   operatorTime: "2021-04-07 14:32:19",
+        //   transactionCode: "5220",
+        // },
+        // {
+        //   transactionNum: "yyh0151020202104071432191",
+        //   branchName: "吕昌泽的机构",
+        //   transactionType: "柜员现金调拨",
+        //   amount: 4000,
+        //   account: "lcz01202104075",
+        //   operatorTime: "2021-04-07 14:22:20",
+        //   transactionCode: "0220",
+        // }
       ],
-      resultList:[        {
-        transactionNum: "lcz0151020202104071432191",
-        branchName: "吕昌泽的机构",
-        transactionType: "银行卡存入",
-        amount: 5000,
-        account: "lcz01202104074",
-        operatorTime: "2021-04-07 14:32:19",
-        transactionCode: "5220",
-      },
-        {
-          transactionNum: "yyh0151020202104071432191",
-          branchName: "吕昌泽的机构",
-          transactionType: "柜员现金调拨",
-          amount: 4000,
-          account: "lcz01202104075",
-          operatorTime: "2021-04-07 14:22:20",
-          transactionCode: "0220",
-        }]
+      resultList: [
+        // {
+        //   transactionNum: "lcz0151020202104071432191",
+        //   branchName: "吕昌泽的机构",
+        //   transactionType: "银行卡存入",
+        //   amount: 5000,
+        //   account: "lcz01202104074",
+        //   operatorTime: "2021-04-07 14:32:19",
+        //   transactionCode: "5220",
+        // },
+        // {
+        //   transactionNum: "yyh0151020202104071432191",
+        //   branchName: "吕昌泽的机构",
+        //   transactionType: "柜员现金调拨",
+        //   amount: 4000,
+        //   account: "lcz01202104075",
+        //   operatorTime: "2021-04-07 14:22:20",
+        //   transactionCode: "0220",
+        // }
+      ]
     }
   },
   methods: {
     search() {
-      let list=[];
+      let list = [];
       for (let i = 0; i < this.transactionList.length; i++) {
         list.push(this.transactionList[i]);
       }
       for (let i = 0; i < this.transactionList.length; i++) {
         if (this.transactionNum !== '' && list[i].transactionNum !== this.transactionNum) {
-          delete(list[i]);
+          delete (list[i]);
           continue;
         }
         if (this.account !== '' && list[i].account !== this.account) {
-          delete(list[i]);
+          delete (list[i]);
           continue;
         }
         if (this.transactionCode !== '' && list[i].transactionCode !== this.transactionCode) {
-          delete(list[i]);
+          delete (list[i]);
           continue;
         }
         let date = list[i].operatorTime.split(' ')[0];
         if (this.startDate !== '' && date < this.startDate) {
-          delete(list[i]);
+          delete (list[i]);
           continue;
         }
         if (this.endDate !== '' && date > this.endDate) {
-          delete(list[i]);
+          delete (list[i]);
         }
       }
       this.resultList = list;

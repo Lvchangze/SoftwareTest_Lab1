@@ -26,11 +26,12 @@ export default {
     }).then(({value}) => {
       this.$message.success('输入成功');
       this.$store.commit('setCurrentAccountNum', value)
-      this.$axios.post('/getAccountFinancialProductList', {
+      this.$axios.post('/getAccountFinancialProduct', {
         accountNum: localStorage.getItem('currentAccountNum')
       })
         .then(resp => {
-          this.accountFinancialProductList = resp.data.accountFinancialProductList
+          console.log(resp)
+          this.accountFinancialProductList = resp.data.productList
         })
         .catch(error => {
           console.log(error)
@@ -44,14 +45,14 @@ export default {
   data() {
     return {
       accountFinancialProductList: [
-        {
-          type: '定期',
-          productName: "安增益31天",
-          date: "2021-04-07",
-          singlePrice: 500,
-          buyInNum: 10,
-          yesterdayBenefit: -70
-        }
+        // {
+        //   type: '定期',
+        //   productName: "安增益31天",
+        //   date: "2021-04-07",
+        //   singlePrice: 500,
+        //   buyInNum: 10,
+        //   yesterdayBenefit: -70
+        // }
       ]
     }
   },

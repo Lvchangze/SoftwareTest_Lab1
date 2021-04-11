@@ -49,26 +49,26 @@ export default {
       accountNum: this.$store.state.currentAccountNum,
       chosenRow: {},
       loanList: [
-        {
-          iouNum: "lcz6161754432644526488",//借据号
-          customerCode: "lcz01202104075",//客户号
-          customerName: "吕昌泽的客户二",//客户名
-          loanStatus: 2,//2为正常
-          productName: "买房贷款",//贷款产品
-          productCode: "20001",//贷款产品编号
-          overdueBalance: 0,//逾期金额
-          createTime: '2021-04-07'//发放日期
-        },
-        {
-          iouNum: "lcz7161754432644526488",
-          customerCode: "lcz01202104075",
-          customerName: "吕昌泽的客户二",
-          loanStatus: 2,
-          productName: "买房贷款",
-          productCode: "20001",
-          overdueBalance: 0,
-          createTime: '2021-04-07'
-        },
+        // {
+        //   iouNum: "lcz6161754432644526488",//借据号
+        //   customerCode: "lcz01202104075",//客户号
+        //   customerName: "吕昌泽的客户二",//客户名
+        //   loanStatus: 2,//2为正常
+        //   productName: "买房贷款",//贷款产品
+        //   productCode: "20001",//贷款产品编号
+        //   overdueBalance: 0,//逾期金额
+        //   createTime: '2021-04-07'//发放日期
+        // },
+        // {
+        //   iouNum: "lcz7161754432644526488",
+        //   customerCode: "lcz01202104075",
+        //   customerName: "吕昌泽的客户二",
+        //   loanStatus: 2,
+        //   productName: "买房贷款",
+        //   productCode: "20001",
+        //   overdueBalance: 0,
+        //   createTime: '2021-04-07'
+        // },
       ]
     }
   },

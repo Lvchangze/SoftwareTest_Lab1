@@ -45,14 +45,14 @@ export default {
       customerCode: this.$store.state.currentCustomerCode,
       chosenRow: {},
       accountList: [
-        {
-          accountNum: '6161754432644526488',
-          voucherName: '银行卡',
-          accountTypeName: '储帐户',
-          balance: 279996.54,
-          state: 1,
-          updateTime: '2021-04-07 14:54:39'
-        },
+        // {
+        //   accountNum: '6161754432644526488',
+        //   voucherName: '银行卡',
+        //   accountTypeName: '储帐户',
+        //   balance: 279996.54,
+        //   state: 1,
+        //   updateTime: '2021-04-07 14:54:39'
+        // },
       ]
     }
   },
