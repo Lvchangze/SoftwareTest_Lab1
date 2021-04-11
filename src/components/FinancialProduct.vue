@@ -21,7 +21,7 @@
       <el-dialog title="请选择买入信息" :visible.sync="dialogVisible">
         <el-form :model="purchaseForm">
           <el-form-item label="选择买入日期">
-            <el-date-picker style="width: 220px" v-model="purchaseForm.date"></el-date-picker>
+            <el-date-picker  value-format="yyyy-MM-dd" style="width: 220px" v-model="purchaseForm.date"></el-date-picker>
           </el-form-item>
           <el-form-item label="填写股票股数" v-if="this.chosenRow.type === '股票'">
             <el-input-number style="width: 220px" v-model="purchaseForm.buyInNum" :min="1" :max="1000"

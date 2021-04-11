@@ -6,7 +6,7 @@
         <el-table-column prop="type" label="类型" column-key="type" align="center"></el-table-column>
         <el-table-column prop="productName" label="产品名称" column-key="productName" align="center"></el-table-column>
         <el-table-column prop="date" label="买入日期" column-key="date" align="center"></el-table-column>
-        <el-table-column prop="singlePrice" label="单价" column-key="singlePrice" align="center"></el-table-column>
+        <el-table-column prop="singlePrice" label="实时单价" column-key="singlePrice" align="center"></el-table-column>
         <el-table-column prop="buyInNum" label="买入数量" column-key="buyInNum" align="center"></el-table-column>
         <el-table-column prop="yesterdayBenefit" label="昨日收益" column-key="yesterdayBenefit"
                          align="center"></el-table-column>
@@ -50,7 +50,7 @@ export default {
           date: "2021-04-07",
           singlePrice: 500,
           buyInNum: 10,
-          yesterdayBenefit: '-70'
+          yesterdayBenefit: -70
         }
       ]
     }
