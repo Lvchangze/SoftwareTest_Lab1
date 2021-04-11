@@ -41,6 +41,7 @@
 export default {
   name: "Main",
   data() {
+    return{}
   },
   methods: {
     //退出登录功能

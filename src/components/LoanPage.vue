@@ -9,7 +9,7 @@
         <el-table-column prop="productName" label="贷款产品" column-key="productName" align="center"></el-table-column>
         <el-table-column prop="productCode" label="贷款产品编号" column-key="productCode" align="center"></el-table-column>
         <el-table-column prop="overdueBalance" label="逾期金额（元）" column-key="overdueBalance" align="center"></el-table-column>
-        <el-table-column prop="loanDate" label="发放日期" column-key="loanDate" sortable align="center"></el-table-column>
+        <el-table-column prop="createTime" label="发放时间" column-key="createTime" sortable align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button type="primary" v-on:click="gotoBillPage(scope.row)">查看详情</el-button>
@@ -24,23 +24,24 @@
 export default {
   name: "LoanPage",
   created() {
-    for (let i = 0 ; i < this.loanList.length;i++){
-      if (this.loanList[i].loanStatus === 2){
-        this.loanList[i].loanStatus = "正常"
-      }
-    }
-    // this.$axios.post('/getLoans', {
-    //   customerCode: localStorage.getItem('currentCustomerCode'),
-    //   accountNum: localStorage.getItem('currentAccountNum')
-    // })
-    //   .then(resp => {
-    //     this.loanList = resp.data.loanList;
-    //     for (let i = 0 ; i < this.loanList.length;i++){
-    //       if (this.loanList[i].loanState === 2){
-    //         this.loanList[i].loanState = "正常"
-    //       }
-    //     }
-    //   })
+    // for (let i = 0 ; i < this.loanList.length;i++){
+    //   if (this.loanList[i].loanStatus === 2){
+    //     this.loanList[i].loanStatus = "正常"
+    //   }
+    // }
+    this.$axios.post('/getLoans', {
+      customerCode: localStorage.getItem('currentCustomerCode'),
+      accountNum: localStorage.getItem('currentAccountNum')
+    })
+      .then(resp => {
+        console.log(resp)
+        this.loanList = resp.data.loanList;
+        for (let i = 0 ; i < this.loanList.length;i++){
+          if (this.loanList[i].loanState === 2){
+            this.loanList[i].loanState = "正常"
+          }
+        }
+      })
   },
   data() {
     return {
@@ -56,7 +57,7 @@ export default {
           productName: "买房贷款",//贷款产品
           productCode: "20001",//贷款产品编号
           overdueBalance: 0,//逾期金额
-          loanDate: '2021-04-07'//发放日期
+          createTime: '2021-04-07'//发放日期
         },
         {
           iouNum: "lcz7161754432644526488",
@@ -66,7 +67,7 @@ export default {
           productName: "买房贷款",
           productCode: "20001",
           overdueBalance: 0,
-          loanDate: '2021-04-07'
+          createTime: '2021-04-07'
         },
       ]
     }

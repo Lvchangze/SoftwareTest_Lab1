@@ -23,20 +23,22 @@ export default {
   },
   methods: {
     verify() {
-      this.$router.push('/AccountPage')
+      // this.$router.push('/AccountPage')
 
-      // this.$axios.post('/verifyCustomer', {
-      //   idnumber: this.idnumber
-      // })
-      //   .then(resp => {
-      //     if (resp.status === 200) {//客户验证成功
-      //       this.$store.commit('setCurrentCustomerCode', resp.data.customerCode)
-      //       this.$router.push('/AccountPage')
-      //     } else if (resp.status === 404) {//客户不存在
-      //       this.$message.error("客户不存在")
-      //     }
-      //   })
-
+      this.$axios.post('/verifyCustomer', {
+        idnumber: this.idnumber
+      })
+        .then(resp => {
+          console.log(resp)
+          if (resp.status === 200) {//客户验证成功
+            this.$store.commit('setCurrentCustomerCode', resp.data.code)
+            this.$router.push('/AccountPage')
+          }
+        })
+        .catch(error => {
+          console.log(error)
+          this.$message.error("客户不存在")
+        })
     }
   }
 }

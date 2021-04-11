@@ -48,16 +48,16 @@
 export default {
   name: "BillPage",
   created() {
-    for (let i = 0; i < this.billList.length; i++) {
-      if (this.billList[i].repaymentStatus === 1) {
-        this.billList[i].repaymentStatus = '未还'
-      } else if (this.billList[i].repaymentStatus === 2) {
-        this.billList[i].repaymentStatus = '已还'
-      } else if (this.billList[i].repaymentStatus === 3) {
-        this.billList[i].repaymentStatus = '逾期'
-      }
-    }
-    // this.updateTable()
+    // for (let i = 0; i < this.billList.length; i++) {
+    //   if (this.billList[i].repaymentStatus === 1) {
+    //     this.billList[i].repaymentStatus = '未还'
+    //   } else if (this.billList[i].repaymentStatus === 2) {
+    //     this.billList[i].repaymentStatus = '已还'
+    //   } else if (this.billList[i].repaymentStatus === 3) {
+    //     this.billList[i].repaymentStatus = '逾期'
+    //   }
+    // }
+    this.updateTable()
   },
   data() {
     return {
@@ -115,6 +115,7 @@ export default {
         iouNum: localStorage.getItem('currentIouNum'),
       })
         .then(resp => {
+          console.log(resp)
           this.billList = resp.data.billList;
           for (let i = 0; i < this.billList.length; i++) {
             if (this.billList[i].repaymentStatus === 1) {
@@ -144,14 +145,14 @@ export default {
             planNum: this.chosenRow.planNum
           })
             .then(resp => {
+              console.log(resp)
               if (resp.status === 200) {
                 this.$message.success("缴纳罚款成功")
                 this.updateTable()
-              } else if (resp.status === 400) {
-                this.$message.error("缴纳罚款失败，请检查余额")
               }
             })
             .catch(() => {
+              this.$message.error("缴纳罚款失败，请检查余额")
             })
         }).catch(() => {//点击了取消
           this.$message.warning("已取消缴纳罚金")
@@ -172,15 +173,15 @@ export default {
           value: this.chosenRow.remainAmount
         })
           .then(resp => {
+            console.log(resp)
             if (resp.status === 200) {
               this.$message.success("还款成功")
               this.updateTable()
-            } else if (resp.status === 400) {
-              this.$message.error("还款失败，请检查余额")
             }
           })
           .catch(error => {
             console.log(error)
+            this.$message.error("还款失败，请检查余额")
           })
       } else if (payMethod === 2) {
         this.$prompt('请输入还款金额', '', {
@@ -199,14 +200,14 @@ export default {
             value: value
           })
             .then(resp => {
+              console.log(resp)
               if (resp.status === 200) {
                 this.$message.success("还款成功")
                 this.updateTable()
-              } else if (resp.status === 400) {
-                this.$message.error("还款失败，请检查余额")
               }
             })
             .catch(error => {
+              this.$message.error("还款失败，请检查余额")
               console.log(error)
             })
         }).catch(() => {

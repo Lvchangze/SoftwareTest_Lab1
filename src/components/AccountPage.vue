@@ -23,22 +23,22 @@
 export default {
   name: "AccountPage",
   created() {
-    for (let i = 0; i < this.accountList.length; i++) {
-      if (this.accountList[i].state === 1) {
-        this.accountList[i].state = "正常"
-      }
-    }
-    // this.$axios.post('/getAccounts', {
-    //   customerCode: localStorage.getItem('currentCustomerCode')
-    // })
-    //   .then(resp => {
-    //     this.accountList = resp.data.accountList;
-    //     for (let i = 0; i < this.accountList.length; i++) {
-    //       if (this.accountList[i].state === 1) {
-    //         this.accountList[i].state = "正常"
-    //       }
-    //     }
-    //   })
+    // for (let i = 0; i < this.accountList.length; i++) {
+    //   if (this.accountList[i].state === 1) {
+    //     this.accountList[i].state = "正常"
+    //   }
+    // }
+    this.$axios.post('/getAccounts', {
+      customerCode: localStorage.getItem('currentCustomerCode')
+    })
+      .then(resp => {
+        this.accountList = resp.data.accountList;
+        for (let i = 0; i < this.accountList.length; i++) {
+          if (this.accountList[i].state === 1) {
+            this.accountList[i].state = "正常"
+          }
+        }
+      })
   },
   data() {
     return {
@@ -48,7 +48,7 @@ export default {
         {
           accountNum: '6161754432644526488',
           voucherName: '银行卡',
-          accountTypeName: '储蓄帐户',
+          accountTypeName: '储帐户',
           balance: 279996.54,
           state: 1,
           updateTime: '2021-04-07 14:54:39'

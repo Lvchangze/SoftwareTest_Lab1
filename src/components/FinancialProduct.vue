@@ -171,11 +171,10 @@ export default {
               .then(resp => {
                 if (resp.status === 200) {
                   this.$message.success("买入成功")
-                } else if (resp.status === 400) {
-                  this.$message.error("余额不足")
                 }
               })
               .catch(error => {
+                this.$message.error("余额不足")
                 console.log(error)
               })
           } else {
